@@ -1,5 +1,5 @@
 import redis
-import pymysql  # Используем pymysql вместо mysql.connector
+import pymysql  #pymysql вместо mysql.connector
 import json
 import time
 
@@ -8,7 +8,7 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 
 while True:
     try:
-        # Подключение к MySQL через pymysql
+        #  pymysql
         db = pymysql.connect(
             host="localhost",
             user="root",
