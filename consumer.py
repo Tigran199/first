@@ -14,7 +14,7 @@ while True:
             user="root",
             password="root",
             database="mydatabase",
-            ssl={'ssl': False}  # Явное отключение SSL
+            ssl={'ssl': False}  # отключение SSL
         )
         
         with db.cursor() as cursor:
