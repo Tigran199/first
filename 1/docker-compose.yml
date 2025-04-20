@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: forum_logs_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: forum_logs
+      MYSQL_USER: forum_user
+      MYSQL_PASSWORD: forum_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - forum_logs_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+volumes:
+  forum_logs_data:

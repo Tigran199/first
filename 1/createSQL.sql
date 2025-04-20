@@ -1,0 +1,34 @@
+Use sqlbd;
+
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE topics (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_topics_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE messages (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    topic_id INT UNSIGNED NOT NULL,
+    user_id INT UNSIGNED,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_messages_topic FOREIGN KEY (topic_id) REFERENCES topics(id),
+    CONSTRAINT fk_messages_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE logs (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED,
+    action VARCHAR(50) NOT NULL,
+    target_id INT UNSIGNED,
+    status VARCHAR(20) NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_logs_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
