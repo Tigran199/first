@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Extract-Transform-Load') {
+            steps {
+                echo 'Запуск Python-скрипта для ETL...'
+                bat 'python etl_script.py'
+            }
+        }
+    }
+
+    triggers {
+        cron('H H * * *')  // запускается раз в сутки
+    }
+}
